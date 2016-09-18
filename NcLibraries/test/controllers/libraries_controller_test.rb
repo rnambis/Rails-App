@@ -1,49 +1,48 @@
 require 'test_helper'
 
-class LibrariesControllerTest < ActionController::TestCase
+class LibrariesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @library = libraries(:one)
   end
 
   test "should get index" do
-    get :index
+    get libraries_url
     assert_response :success
-    assert_not_nil assigns(:libraries)
   end
 
   test "should get new" do
-    get :new
+    get new_library_url
     assert_response :success
   end
 
   test "should create library" do
     assert_difference('Library.count') do
-      post :create, library: { name: @library.name }
+      post libraries_url, params: { library: { name: @library.name } }
     end
 
-    assert_redirected_to library_path(assigns(:library))
+    assert_redirected_to library_url(Library.last)
   end
 
   test "should show library" do
-    get :show, id: @library
+    get library_url(@library)
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @library
+    get edit_library_url(@library)
     assert_response :success
   end
 
   test "should update library" do
-    patch :update, id: @library, library: { name: @library.name }
-    assert_redirected_to library_path(assigns(:library))
+    patch library_url(@library), params: { library: { name: @library.name } }
+    assert_redirected_to library_url(@library)
   end
 
   test "should destroy library" do
     assert_difference('Library.count', -1) do
-      delete :destroy, id: @library
+      delete library_url(@library)
     end
 
-    assert_redirected_to libraries_path
+    assert_redirected_to libraries_url
   end
 end

@@ -1,23 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Room:</strong>
-  <%= @room.room_id %>
+  <strong>Room no:</strong>
+  <%= @room.Room_No %>
 </p>
 
 <p>
   <strong>Size:</strong>
-  <%= @room.size %>
-</p>
-
-<p>
-  <strong>Library:</strong>
-  <%= @room.library %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @room.status %>
+  <%= @room.Size %>
 </p>
 
 <%= link_to 'Edit', edit_room_path(@room) %> |

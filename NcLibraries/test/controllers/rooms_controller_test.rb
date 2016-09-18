@@ -1,49 +1,48 @@
 require 'test_helper'
 
-class RoomsControllerTest < ActionController::TestCase
+class RoomsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @room = rooms(:one)
   end
 
   test "should get index" do
-    get :index
+    get rooms_url
     assert_response :success
-    assert_not_nil assigns(:rooms)
   end
 
   test "should get new" do
-    get :new
+    get new_room_url
     assert_response :success
   end
 
   test "should create room" do
     assert_difference('Room.count') do
-      post :create, room: { library: @room.library, room_id: @room.room_id, size: @room.size, status: @room.status }
+      post rooms_url, params: { room: { Room_No: @room.Room_No, Size: @room.Size } }
     end
 
-    assert_redirected_to room_path(assigns(:room))
+    assert_redirected_to room_url(Room.last)
   end
 
   test "should show room" do
-    get :show, id: @room
+    get room_url(@room)
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @room
+    get edit_room_url(@room)
     assert_response :success
   end
 
   test "should update room" do
-    patch :update, id: @room, room: { library: @room.library, room_id: @room.room_id, size: @room.size, status: @room.status }
-    assert_redirected_to room_path(assigns(:room))
+    patch room_url(@room), params: { room: { Room_No: @room.Room_No, Size: @room.Size } }
+    assert_redirected_to room_url(@room)
   end
 
   test "should destroy room" do
     assert_difference('Room.count', -1) do
-      delete :destroy, id: @room
+      delete room_url(@room)
     end
 
-    assert_redirected_to rooms_path
+    assert_redirected_to rooms_url
   end
 end
