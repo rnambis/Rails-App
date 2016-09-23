@@ -1,5 +1,9 @@
 class SessionsController < ApplicationController
   def new
+	current_user
+	if logged_in?
+		redirect_to user
+	end		
   end
   
   def create
@@ -8,8 +12,8 @@ class SessionsController < ApplicationController
     	log_in user
     	redirect_to user
     else
-    	flash[:danger] = 'The email address or the password is not correct.'
-    	render 'new'	
+    	flash[:error] = "The email address or the password is not correct."
+    	redirect_to login_path	
   end
 end  
   def destroy
