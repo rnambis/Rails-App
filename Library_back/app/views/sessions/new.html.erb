@@ -3,7 +3,7 @@
     <div class="notice"><%= flash[:error] %></div>
 <% end %>
 
-<% end %>    
+    
 <h1>Log in</h1>
  <%= form_for(:session, url: login_path) do |f| %>
 <div class="field">
@@ -18,5 +18,6 @@
   <div class="actions">
     <%= f.submit "Login" %>
   </div>
+
   <p>New User? <%= link_to "Sign up now!", new_user_path %></p>
-  <% end %>
+  <% end %>  

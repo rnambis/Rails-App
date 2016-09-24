@@ -13,9 +13,8 @@ def current_user
 end
 
 def logged_in?
-   if !@current_user.nil?
-   	@current_user
-   end	
+   !@current_user.nil?
+   	
 end
 
 def log_out
