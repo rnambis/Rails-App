@@ -22,3 +22,5 @@ def log_out
    @current_user = nil
 end   
 end
+
+# The concepts of creating session was referenced from https://www.railstutorial.org/book/basic_login . The concept of sessions and html being a 'tasteless' 
