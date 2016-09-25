@@ -5,7 +5,12 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     if logged_in?
-    	@user = @current_user
+    	if @current_user.admin
+    		@users = User.all
+    		byebug
+    	else	
+    		@user = @current_user
+    	end
     else	
         redirect_to login_path
     end    
@@ -31,6 +36,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    
     @user = User.new(user_params)
     @user.admin = false
     #current_user
