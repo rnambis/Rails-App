@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   	
+  resources :rooms
   root 'welcome#hello'
-  
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
   get '/logout' => 'sessions#destroy'
-  
+  get '/admin' => 'sessions#create'
   resources :users
   
 
