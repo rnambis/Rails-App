@@ -20,8 +20,8 @@
     <%= f.text_field :size %>
   </div>
 
-  <%= f.label :library %>
-  <%= select("room", "library_id", Library.all.collect{ |c| [c.name, c.id]}) %>
+    <%= f.label :library %>
+    <%= select("room", "library_id", Library.all.collect{ |c| [c.name, c.id]}) %>
 
   <div class="actions">
     <%= f.submit %>

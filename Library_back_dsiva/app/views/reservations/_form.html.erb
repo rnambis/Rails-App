@@ -11,17 +11,16 @@
     </div>
   <% end %>
 
-
     <%= f.label :size %>
     <%= select(:Reservation, :size, Reservation::SIZE) %>
 
     <%= f.label :library %>
     <%= select(:Reservation, :library, Reservation::LIBRARY) %>
 
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date, :start_date => Date.today, end_date: (Date.today + 7.days).end_of_day  %>
-  </div>
+    <div class="field">
+      <%= f.label :date %><br>
+      <%= f.date_select :date, :start_date => Date.today, end_date: (Date.today + 7.days).end_of_day  %>
+    </div>
   <div class="field">
     <%= f.label :time %><br>
     <%= f.time_select :time %>

@@ -18,7 +18,7 @@ class ReservationsControllerTest < ActionController::TestCase
 
   test "should create reservation" do
     assert_difference('Reservation.count') do
-      post :create, reservation: { date: @reservation.date, time: @reservation.time }
+      post :create, reservation: { date: @reservation.date, library: @reservation.library, size: @reservation.size, time: @reservation.time }
     end
 
     assert_redirected_to reservation_path(assigns(:reservation))
@@ -35,7 +35,7 @@ class ReservationsControllerTest < ActionController::TestCase
   end
 
   test "should update reservation" do
-    patch :update, id: @reservation, reservation: { date: @reservation.date, time: @reservation.time }
+    patch :update, id: @reservation, reservation: { date: @reservation.date, library: @reservation.library, size: @reservation.size, time: @reservation.time }
     assert_redirected_to reservation_path(assigns(:reservation))
   end
 

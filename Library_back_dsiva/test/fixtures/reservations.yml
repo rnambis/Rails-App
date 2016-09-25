@@ -1,9 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  date: 2016-09-24
-  time: 2016-09-24 17:21:24
+  size: MyString
+  library: MyString
+  date: 2016-09-25
+  time: 2016-09-25 12:58:46
 
 two:
-  date: 2016-09-24
-  time: 2016-09-24 17:21:24
+  size: MyString
+  library: MyString
+  date: 2016-09-25
+  time: 2016-09-25 12:58:46
