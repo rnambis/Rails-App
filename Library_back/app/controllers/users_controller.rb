@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if logged_in?
+    	@user = @current_user
+    else	
+        redirect_to login_path
+    end    
   end
 
   # GET /users/1
@@ -23,11 +27,12 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
   end
-
+  
   # POST /users
   # POST /users.json
   def create
     @user = User.new(user_params)
+    @user.admin = false
     #current_user
     respond_to do |format|
       if @user.save
@@ -40,7 +45,7 @@ class UsersController < ApplicationController
       end
     end
   end
-
+ 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -64,6 +69,10 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+    
+  
+  
 
   private
     # Use callbacks to share common setup or constraints between actions.
