@@ -6,11 +6,7 @@
     
 <h1>Log in</h1>
  <%= form_for(:session, url: login_path) do |f| %>
-    
-     <%= f.radio_button :radio, true %>
-     <%= f.label :radio, "Administrator", :value => "true"  %>
-     
-    <div class="field">
+<div class="field">
     <%= f.label :email %><br>
     <%= f.email_field :email %>
   </div>
@@ -23,5 +19,3 @@
     <%= f.submit "Login" %>
   </div>
 
-  <p>New User? <%= link_to "Sign up now!", new_user_path %></p>
-  <% end %>  

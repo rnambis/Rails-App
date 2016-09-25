@@ -1,5 +1,9 @@
 <p id="notice"><%= notice %></p>
-
+<% if @user.admin %>
+   <h1>Hey Admin!</h1>
+<% else %>
+   <h1>Hey <%=@user.name%>!</h1>   
+<% end %>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -9,6 +13,4 @@
   <strong>Email:</strong>
   <%= @user.email %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %>
 <%= link_to 'logout', logout_path %>
