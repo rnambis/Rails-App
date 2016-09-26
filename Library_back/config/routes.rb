@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   	
+  resources :reservations
   resources :rooms
   root 'welcome#hello'
   get '/login' => 'sessions#new'
@@ -7,7 +8,8 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy'
   get '/admin' => 'sessions#create'
   resources :users
-  
+  get '/admin' => 'users#newadmin'
+  post '/admin' => 'users#createadmin'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

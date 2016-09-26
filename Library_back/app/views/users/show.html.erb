@@ -21,5 +21,15 @@
 <h2>Manage Users</h2>
 <%= link_to 'Create User', new_user_path %></br>
 <%= link_to 'Delete User', users_path %></br>
+<h2>Manage Reservations</h2>
+<%= link_to 'Create Reservation', new_reservation_path %></br>
+<%= link_to 'Total Bookings', reservations_path %></br>
+
+<% else %>
+<h2>My Bookings</h2>
+<%= link_to 'New Booking', new_reservation_path %></br>
+<%= link_to 'Booking History', reservations_path %></br>
 <% end %> 
+
 <%= link_to 'logout', logout_path %>
+<%= link_to 'Home', login_path %>
