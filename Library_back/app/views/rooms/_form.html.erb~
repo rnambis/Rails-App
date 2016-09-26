@@ -26,5 +26,5 @@
   <div class="actions">
     <%= f.submit %>
   </div>
-    <%= link_to 'Home', login_path %>
+  
 <% end %>

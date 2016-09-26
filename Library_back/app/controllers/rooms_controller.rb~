@@ -22,7 +22,7 @@ class RoomsController < ApplicationController
     	redirect_to login_path
     
   end
-end
+
   # GET /rooms/1/edit
   def edit
   end

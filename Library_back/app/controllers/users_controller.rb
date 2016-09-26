@@ -4,14 +4,20 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    current_user
     if logged_in?
+    
+    	#byebug
     	if @current_user.admin
     		@users = User.all
-    		byebug
+    		#byebug
     	else	
-    		@user = @current_user
+		#byebug    	
+    		@user = current_user
+    		redirect_to login_path
     	end
-    else	
+    else
+    	
         redirect_to login_path
     end    
   end
@@ -36,21 +42,45 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    current_user
+    if logged_in?    
+    	@user = User.new(user_params)
+    	@adminator = params[:user][:admin]
+    	if @adminator
+    		@user.admin = true
+    	else
+    		@user.admin = false
+	end    	
+    	#current_user
+    	#byebug
+    	respond_to do |format|
+    	  if @user.save
+    	    
+    	    format.html { redirect_to users_path, notice: 'User was successfully created.' }
+    	    format.json { render :show, status: :created, location: @user }
+    	  else
+    	    format.html { render :new }
+    	    format.json { render json: @user.errors, status: :unprocessable_entity }
+    	  end
+    	end
     
-    @user = User.new(user_params)
-    @user.admin = false
-    #current_user
-    respond_to do |format|
-      if @user.save
-      	log_in @user
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+    else
+    	@user = User.new(user_params)
+    	@user.admin = false
+    	#current_user
+    	respond_to do |format|
+    	  if @user.save
+    	    log_in @user
+    	    format.html { redirect_to @user, notice: 'User was successfully created.' }
+    	    format.json { render :show, status: :created, location: @user }
+    	  else
+    	    format.html { render :new }
+    	    format.json { render json: @user.errors, status: :unprocessable_entity }
+    	  end
+    	end  
+     end	
+    	
+end
  
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
@@ -69,11 +99,18 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
+    current_user
+    if !@user.admin
     @user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
+    else
+    	flash[:error] = "Cant Delete an Admin!"
+    	redirect_to users_path
+    end
+    
   end
   
     
