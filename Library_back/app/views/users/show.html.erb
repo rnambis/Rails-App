@@ -14,13 +14,13 @@
 </p>
 
 <% if @user.admin %>
-<h2>Manage Rooms</h2>
+<h2>Rooms</h2>
 <%= link_to 'Create Room', new_room_path %></br>
-<%= link_to 'Delete Room', rooms_path %></br>
+<%= link_to 'Manage Rooms', rooms_path %></br>
 
-<h2>Manage Users</h2>
+<h2>Users</h2>
 <%= link_to 'Create User', new_user_path %></br>
-<%= link_to 'Delete User', users_path %></br>
+<%= link_to 'Manage Users', users_path %></br>
 <h2>Manage Reservations</h2>
 <%= link_to 'Create Reservation', new_reservation_path %></br>
 <%= link_to 'Total Bookings', reservations_path %></br>
