@@ -46,7 +46,9 @@ class ReservationsController < ApplicationController
     @room_details = @rooms.find_by(room_name: @reservation.room_name)
     @reservation.size = @room_details.size
     @reservation.library = @room_details.library
-    @reservation.email = @current_user.email
+    if !@current_user.admin
+    	@reservation.email = @current_user.email
+    end	
     @reservation.booked = "#{@reservation.slot}:00 - #{@reservation.slot+2}:00"
     respond_to do |format|
       if @reservation.save
@@ -91,6 +93,10 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:room_name, :date, :slot)
+      if @current_user.admin
+      	params.require(:reservation).permit(:email,:room_name, :date, :slot)
+      else
+      	params.require(:reservation).permit(:room_name, :date, :slot)
+      end	
     end
 end

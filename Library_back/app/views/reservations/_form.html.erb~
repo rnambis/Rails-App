@@ -10,7 +10,12 @@
       </ul>
     </div>
   <% end %>
-
+  <% if @current_user.admin %>
+  	<div class="field">
+    	<%= f.label :user %><br>
+    	<%= f.select :email, options_for_select(User.all.map{|s|[s.email]}) %>
+  	</div>
+  <% end %>	
   <div class="field">
     <%= f.label :room_name %><br>
     <%= f.select :room_name, options_for_select(Room.all.map{|s|[s.room_name]}) %>
@@ -22,14 +27,6 @@
   <div class="field">
     <%= f.label :slot %><br>
     <%= f.select :slot, options_for_select([0,2,4,6,8,10,12,14,16,18,20,22].map{|s| s}) %>
-  </div>
-  <div class="field">
-    <%= f.label :size %><br>
-    <%= f.text_field :size %>
-  </div>
-  <div class="field">
-    <%= f.label :library %><br>
-    <%= f.text_field :library %>
   </div>
   <div class="actions">
     <%= f.submit %>
