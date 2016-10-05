@@ -13,8 +13,8 @@ class ReservationsController < ApplicationController
        	           redirect_to login_path
        	    end       
        else
-       	    @reservations = Reservation.where(email: @current_user.name)
-       	    byebug
+       	    @reservations = Reservation.where(email: @current_user.email)
+       	    
        	    if @reservations.nil?
        	    	flash[:error] = "No booking history."
 		redirect_to login_path
