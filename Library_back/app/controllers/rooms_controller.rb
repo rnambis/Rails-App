@@ -62,12 +62,19 @@ end
   def destroy
     current_user
     if logged_in?
-          @room.destroy
-    	  respond_to do |format|
-    	  format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
-    	  format.json { head :no_content }
+    	if @current_user.admin
+        	  @room.destroy
+        	  @reservations = Reservation.where(room_name: @room.room_name)
+    		  @reservations.each {|x| x.destroy}
     
-    end
+    		  respond_to do |format|
+    		  format.html { redirect_to rooms_url, notice: 'Room was successfully destroyed.' }
+    		  format.json { head :no_content }
+    
+    		end
+    	else
+    	format.html { redirect_to login_path, notice: 'Only admin can delete a room.' }
+    	end	
     else
     	redirect_to login_path
     end
