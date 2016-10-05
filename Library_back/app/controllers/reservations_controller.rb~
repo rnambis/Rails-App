@@ -48,6 +48,7 @@ class ReservationsController < ApplicationController
     @reservation.library = @room_details.library
     @reservation.email = @current_user.email
     @reservation.booked = "#{@reservation.slot}:00 - #{@reservation.slot+2}:00"
+    @validate = Reservation.where(room_name: @reservation.room_name, slot: @reservation.slot,date: @reservation.date)
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
