@@ -102,6 +102,8 @@ end
     current_user
     if !@user.admin
     @user.destroy
+    @reservations = Reservation.where(email: @user.email)
+    @reservations.each {|x| x.destroy}
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
