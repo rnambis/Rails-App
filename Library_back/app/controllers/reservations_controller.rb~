@@ -48,7 +48,6 @@ class ReservationsController < ApplicationController
     @reservation.library = @room_details.library
     @reservation.email = @current_user.email
     @reservation.booked = "#{@reservation.slot}:00 - #{@reservation.slot+2}:00"
-    @validate = Reservation.where(room_name: @reservation.room_name, slot: @reservation.slot,date: @reservation.date)
     respond_to do |format|
       if @reservation.save
         format.html { redirect_to @reservation, notice: 'Reservation was successfully created.' }
@@ -92,6 +91,9 @@ class ReservationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reservation_params
-      params.require(:reservation).permit(:room_name, :date, :slot)
+      if @current_user.admin
+      	params.require(:reservation).permit(:email,:room_name, :date, :slot)
+      else
+      	params.require(:reservation).permit(:room_name, :date, :slot)
     end
 end

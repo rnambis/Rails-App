@@ -10,7 +10,13 @@
       </ul>
     </div>
   <% end %>
-
+  <% current_user %>
+  <% if @current_user.admin %>
+  	<div class="field">
+    	<%= f.label :user %><br>
+    	<%= f.select :email, options_for_select(User.all.map{|s|[s.email]}) %>
+  	</div>
+  <% end %>	
   <div class="field">
     <%= f.label :room_name %><br>
     <%= f.select :room_name, options_for_select(Room.all.map{|s|[s.room_name]}) %>
