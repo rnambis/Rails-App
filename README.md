@@ -10,8 +10,6 @@ Some of the funcationalities of Admin are: Can create or delete a room. Can crea
 
 Some of the funcationalities of User are: Can signup and log-in. Can create reservation. Can see the booking history. Can edit and delete booked room.
 
-These are general functionalities and there are some more functionalities which have been covered, visit http://libsystemncsu.herokuapp.com/
+These are general functionalities and there are some more functionalities which have been covered, visit http://libsystemncsu.herokuapp.com/ to find out more. Thanks.
 
 The application has been deployed from another git repository: https://github.com/cahuja2/heroku.git
-
-to find out more. Thanks.
